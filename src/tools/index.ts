@@ -1,15 +1,30 @@
 import { tool as base64FileConverter } from './base64-file-converter';
 import { tool as base64StringConverter } from './base64-string-converter';
 import { tool as basicAuthGenerator } from './basic-auth-generator';
+import { tool as volumeConverter } from './volume-converter';
+import { tool as pressureConverter } from './pressure-converter';
+import { tool as massConverter } from './mass-converter';
+import { tool as lengthConverter } from './length-converter';
+import { tool as forceConverter } from './force-converter';
+import { tool as energyConverter } from './energy-converter';
+import { tool as areaConverter } from './area-converter';
+import { tool as angleConverter } from './angle-converter';
 import { tool as morseConverter } from './morse-converter';
 import { tool as emailNormalizer } from './email-normalizer';
+import { tool as colorWheel } from './color-wheel';
+import { tool as dataTransferRateConverter } from './data-transfer-rate-converter';
+import { tool as dataStorageUnitConverter } from './data-storage-unit-converter';
+import { tool as unicodeSearch } from './unicode-search';
+import { tool as imageConverter } from './image-converter';
 
 import { tool as asciiTextDrawer } from './ascii-text-drawer';
 
 import { tool as textToUnicode } from './text-to-unicode';
 import { tool as safelinkDecoder } from './safelink-decoder';
+import { tool as portNumbers } from './port-numbers';
 import { tool as xmlToJson } from './xml-to-json';
 import { tool as jsonToXml } from './json-to-xml';
+import { tool as timezoneConverter } from './timezone-converter';
 import { tool as regexTester } from './regex-tester';
 import { tool as regexMemo } from './regex-memo';
 import { tool as markdownToHtml } from './markdown-to-html';
@@ -87,6 +102,9 @@ import { tool as urlParser } from './url-parser';
 import { tool as uuidGenerator } from './uuid-generator';
 import { tool as macAddressLookup } from './mac-address-lookup';
 import { tool as xmlFormatter } from './xml-formatter';
+import { tool as manyUnitsConverter } from './many-units-converter';
+import { tool as powerConverter } from './power-converter';
+import { tool as imageExifReader } from './image-exif-reader';
 import { tool as yamlViewer } from './yaml-viewer';
 
 export const toolsByCategory: ToolCategory[] = [
@@ -98,6 +116,7 @@ export const toolsByCategory: ToolCategory[] = [
     name: 'Converter',
     components: [
       dateTimeConverter,
+      timezoneConverter,
       baseConverter,
       romanNumeralConverter,
       base64StringConverter,
@@ -139,11 +158,20 @@ export const toolsByCategory: ToolCategory[] = [
       httpStatusCodes,
       jsonDiff,
       safelinkDecoder,
+      colorWheel,
+      unicodeSearch,
     ],
   },
   {
     name: 'Images and videos',
-    components: [qrCodeGenerator, wifiQrCodeGenerator, svgPlaceholderGenerator, cameraRecorder],
+    components: [
+      qrCodeGenerator,
+      wifiQrCodeGenerator,
+      svgPlaceholderGenerator,
+      cameraRecorder,
+      imageExifReader,
+      imageConverter,
+    ],
   },
   {
     name: 'Development',
@@ -166,15 +194,43 @@ export const toolsByCategory: ToolCategory[] = [
   },
   {
     name: 'Network',
-    components: [ipv4SubnetCalculator, ipv4AddressConverter, ipv4RangeExpander, macAddressLookup, macAddressGenerator, ipv6UlaGenerator],
+    components: [
+      ipv4SubnetCalculator,
+      ipv4AddressConverter,
+      ipv4RangeExpander,
+      macAddressLookup,
+      macAddressGenerator,
+      ipv6UlaGenerator,
+      portNumbers,
+    ],
   },
   {
     name: 'Math',
-    components: [mathEvaluator, etaCalculator, percentageCalculator],
+    components: [
+      mathEvaluator,
+      etaCalculator,
+      percentageCalculator,
+      dataTransferRateConverter,
+      dataStorageUnitConverter,
+      angleConverter,
+    ],
   },
   {
     name: 'Measurement',
-    components: [chronometer, temperatureConverter, benchmarkBuilder],
+    components: [
+      chronometer,
+      manyUnitsConverter,
+      temperatureConverter,
+      pressureConverter,
+      massConverter,
+      lengthConverter,
+      areaConverter,
+      volumeConverter,
+      forceConverter,
+      energyConverter,
+      powerConverter,
+      benchmarkBuilder,
+    ],
   },
   {
     name: 'Text',

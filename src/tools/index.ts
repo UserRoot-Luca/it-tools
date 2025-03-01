@@ -21,6 +21,8 @@ import { tool as asciiTextDrawer } from './ascii-text-drawer';
 
 import { tool as textToUnicode } from './text-to-unicode';
 import { tool as safelinkDecoder } from './safelink-decoder';
+import { tool as commonRegexMemo } from './common-regex-memo';
+import { tool as removeExif } from './remove-exif';
 import { tool as portNumbers } from './port-numbers';
 import { tool as xmlToJson } from './xml-to-json';
 import { tool as jsonToXml } from './json-to-xml';
@@ -171,6 +173,7 @@ export const toolsByCategory: ToolCategory[] = [
       cameraRecorder,
       imageExifReader,
       imageConverter,
+      removeExif,
     ],
   },
   {
@@ -190,6 +193,7 @@ export const toolsByCategory: ToolCategory[] = [
       emailNormalizer,
       regexTester,
       regexMemo,
+      commonRegexMemo,
     ],
   },
   {

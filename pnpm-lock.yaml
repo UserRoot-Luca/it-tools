@@ -38,6 +38,9 @@ importers:
       '@types/markdown-it':
         specifier: ^13.0.7
         version: 13.0.9
+      '@types/memorystream':
+        specifier: ^0.3.4
+        version: 0.3.4
       '@types/morsee':
         specifier: ^1.0.2
         version: 1.0.2
@@ -104,8 +107,11 @@ importers:
       emojilib:
         specifier: ^3.0.10
         version: 3.0.10
+      exif-be-gone:
+        specifier: ^1.5.1
+        version: 1.5.1
       exifreader:
-        specifier: ^4.20.0
+        specifier: ^4.26.1
         version: 4.26.1
       figlet:
         specifier: ^1.7.0
@@ -158,6 +164,9 @@ importers:
       mathjs:
         specifier: ^11.9.1
         version: 11.9.1
+      memorystream:
+        specifier: ^0.3.1
+        version: 0.3.1
       mime-types:
         specifier: ^2.1.35
         version: 2.1.35
@@ -1777,6 +1786,9 @@ packages:
   '@types/mdurl@1.0.2':
     resolution: {integrity: sha512-eC4U9MlIcu2q0KQmXszyn5Akca/0jrQmwDRgpAMJai7qBWq4amIQhZyNau4VYGtCeALvW1/NtjzJJ567aZxfKA==}
 
+  '@types/memorystream@0.3.4':
+    resolution: {integrity: sha512-AVVe8unTnhTecg9GmRVddQFvi5K7+QcvLTfUstT+5dhQ633+JX4bK/sKaHTj8Z5RUOoVNS6u1gfby29ArDj4Gw==}
+
   '@types/mime-types@2.1.1':
     resolution: {integrity: sha512-vXOTGVSLR2jMw440moWTC7H19iUyLtP3Z1YTj7cSsubOICinjMxFeb/V57v9QdyyPGbbWolUFSSmSiRSn94tFw==}
 
@@ -3304,6 +3316,10 @@ packages:
     resolution: {integrity: sha512-8uSpZZocAZRBAPIEINJj3Lo9HyGitllczc27Eh5YYojjMFMn8yHMDMaUHE2Jqfq05D/wucwI4JGURyXt1vchyg==}
     engines: {node: '>=10'}
 
+  exif-be-gone@1.5.1:
+    resolution: {integrity: sha512-+fV9PoomNVR5Hmp0n1c0ZVl78/GaFrpnC0t7q4F9Aey8NcL+7Lutcez8KY2Ni30NWpvgLXawqiRFFwtdo4QgFg==}
+    hasBin: true
+
   exifreader@4.26.1:
     resolution: {integrity: sha512-5u7LooUryPAhdQ/Wn5n/P8WsWJ/DxZ5AToc7gTDlzN41QlecGFEt3y+rXpaOe7GhxZ8cD5t8E7yqrq0oZeVHmw==}
 
@@ -4205,6 +4221,10 @@ packages:
 
   mdurl@2.0.0:
     resolution: {integrity: sha512-Lf+9+2r+Tdp5wXDXC4PcIBjTDtq4UKjCPMQhKIuzpJNW0b96kVqSwW0bT7FhRSfmAiFYgP+SCRvdrDozfh0U5w==}
+
+  memorystream@0.3.1:
+    resolution: {integrity: sha512-S3UwM3yj5mtUSEfP41UZmt/0SCoVYUcU1rkXv+BQ5Ig8ndL4sPoJNBUJERafdPb5jjHJGuMgytgKvKIf58XNBw==}
+    engines: {node: '>= 0.10.0'}
 
   merge-stream@2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
@@ -7705,6 +7725,10 @@ snapshots:
 
   '@types/mdurl@1.0.2': {}
 
+  '@types/memorystream@0.3.4':
+    dependencies:
+      '@types/node': 18.15.11
+
   '@types/mime-types@2.1.1': {}
 
   '@types/minimist@1.2.2': {}
@@ -9720,6 +9744,8 @@ snapshots:
       signal-exit: 3.0.7
       strip-final-newline: 2.0.0
 
+  exif-be-gone@1.5.1: {}
+
   exifreader@4.26.1:
     optionalDependencies:
       '@xmldom/xmldom': 0.9.7
@@ -10660,6 +10686,8 @@ snapshots:
   mdurl@1.0.1: {}
 
   mdurl@2.0.0: {}
+
+  memorystream@0.3.1: {}
 
   merge-stream@2.0.0: {}
 

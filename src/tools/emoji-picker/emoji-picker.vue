@@ -2,6 +2,7 @@
 import emojiUnicodeData from 'unicode-emoji-json';
 import emojiKeywords from 'emojilib';
 import _ from 'lodash';
+import { IconChevronRight, IconSearch } from '@tabler/icons-vue';
 import type { EmojiInfo } from './emoji.types';
 import { useFuzzySearch } from '@/composable/fuzzySearch';
 import useDebouncedRef from '@/composable/debouncedref';
@@ -36,6 +37,27 @@ const { searchResult } = useFuzzySearch({
     isCaseSensitive: false,
   },
 });
+
+const emojisPerPage = 36; // Number of emojis to load per group initially
+// Tracks how many emojis are shown per group and the collapsed state of each group
+const groupLoadLimits = ref(
+  emojisGroups.reduce((acc, group) => {
+    acc[group.group] = { limit: emojisPerPage, collapsed: false };
+    return acc;
+  }, {} as Record<string, { limit: number; collapsed: boolean }>),
+);
+// Toggles the visibility of the emoji group
+function toggleGroup(group: string) {
+  groupLoadLimits.value[group].collapsed = !groupLoadLimits.value[group].collapsed;
+};
+// Loads more emojis incrementally
+function loadMoreEmojis(group: string) {
+  groupLoadLimits.value[group].limit += emojisPerPage;
+};
+// Loads all emojis in the group at once
+function loadAllEmojis(group: string) {
+  groupLoadLimits.value[group].limit = emojisGroups.find(g => g.group === group)?.emojiInfos.length || 0;
+};
 </script>
 
 <template>
@@ -47,7 +69,7 @@ const { searchResult } = useFuzzySearch({
         mx-auto max-w-600px
       >
         <template #prefix>
-          <icon-mdi-search mr-6px color-black op-70 dark:color-white />
+          <n-icon :component="IconSearch" mr-6px color-black op-70 dark:color-white />
         </template>
       </c-input-text>
     </div>
@@ -76,11 +98,27 @@ const { searchResult } = useFuzzySearch({
       v-else
       :key="group"
     >
-      <div mt-4 text-20px font-bold>
-        {{ group }}
+      <div mt-4 text-20px font-bold style="cursor: pointer;" @click="toggleGroup(group)">
+        <n-icon
+          :component="IconChevronRight"
+          :class="{ 'rotate-0': groupLoadLimits[group].collapsed, 'rotate-90': !groupLoadLimits[group].collapsed }"
+          mr-1 text-16px lh-1 op-50 transition
+        />
+        <span>{{ group }}</span>
       </div>
 
-      <emoji-grid :emoji-infos="emojiInfos" />
+      <div v-show="!groupLoadLimits[group].collapsed">
+        <emoji-grid :emoji-infos="emojiInfos.slice(0, groupLoadLimits[group].limit)" />
+
+        <div v-if="groupLoadLimits[group].limit < emojiInfos.length" style="display: flex; gap: 8px; margin-top: 8px; justify-content: center;">
+          <c-button @click="loadMoreEmojis(group)">
+            Load More
+          </c-button>
+          <c-button @click="loadAllEmojis(group)">
+            Load All
+          </c-button>
+        </div>
+      </div>
     </div>
   </div>
 </template>

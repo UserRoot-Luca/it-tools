@@ -11,6 +11,10 @@ import { tool as areaConverter } from './area-converter';
 import { tool as angleConverter } from './angle-converter';
 import { tool as morseConverter } from './morse-converter';
 import { tool as emailNormalizer } from './email-normalizer';
+import { tool as fortuneWheel } from './fortune-wheel';
+import { tool as cardPicker } from './card-picker';
+import { tool as coinFlipper } from './coin-flipper';
+import { tool as diceRoller } from './dice-roller';
 import { tool as colorWheel } from './color-wheel';
 import { tool as dataTransferRateConverter } from './data-transfer-rate-converter';
 import { tool as dataStorageUnitConverter } from './data-storage-unit-converter';
@@ -217,6 +221,10 @@ export const toolsByCategory: ToolCategory[] = [
       dataTransferRateConverter,
       dataStorageUnitConverter,
       angleConverter,
+      diceRoller,
+      coinFlipper,
+      cardPicker,
+      fortuneWheel,
     ],
   },
   {

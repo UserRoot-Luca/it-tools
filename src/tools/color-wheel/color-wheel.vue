@@ -86,7 +86,7 @@ watch(
 <template>
   <div style="max-width: 600px">
     <c-card title="Pick a color" mb-2>
-      <n-color-picker :value="wheelColor" :show-alpha="false" />
+      <n-color-picker v-model:value="wheelColor" :show-alpha="false" />
       <div
         :style="{ backgroundColor: wheelColor }"
       />
@@ -127,6 +127,7 @@ watch(
         :style="{
           backgroundColor: `${color}`,
           color: isColorReadable ? '#000' : '#fff',
+          width: '75px',
         }"
       >
         {{ color }}

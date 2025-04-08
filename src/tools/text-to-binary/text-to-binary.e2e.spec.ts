@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
 
-test.describe('Tool - Text to ASCII binary', () => {
+test.describe('Tool - Text to UTF-8 binary', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/text-to-binary');
   });
 
   test('Has correct title', async ({ page }) => {
-    await expect(page).toHaveTitle('Text to ASCII binary - IT Tools');
+    await expect(page).toHaveTitle('Text to UTF-8 binary - IT Tools');
   });
 
   test('Text to binary conversion', async ({ page }) => {

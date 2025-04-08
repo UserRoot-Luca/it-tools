@@ -10,21 +10,31 @@ import {
   isDate,
   isValid,
   parseISO,
-  parseJSON,
 } from 'date-fns';
+import { UTCDate } from '@date-fns/utc';
 import type { DateFormat, ToDateMapper } from './date-time-converter.types';
 import {
   dateToExcelFormat,
+  dateToLDAPTimestamp,
+  dateToWin32FileTime,
   excelFormatToDate,
+  fromJSDate,
+  fromTimestamp,
   isExcelFormat,
   isISO8601DateTimeString,
   isISO9075DateString,
+  isJSDate,
+  isLDAPTimestamp,
   isMongoObjectId,
   isRFC3339DateString,
   isRFC7231DateString,
   isTimestamp,
   isUTCDateString,
   isUnixTimestamp,
+  isWin32FileTime,
+  lDAPTimestampToDate,
+  toJSDate,
+  win32FileTimeToUnix,
 } from './date-time-converter.models';
 import { withDefaultOnError } from '@/utils/defaults';
 import { useValidation } from '@/composable/validation';
@@ -43,6 +53,12 @@ const formats: DateFormat[] = [
   {
     name: 'ISO 8601',
     fromDate: formatISO,
+    toDate: parseISO,
+    formatMatcher: date => isISO8601DateTimeString(date),
+  },
+  {
+    name: 'ISO 8601 UTC',
+    fromDate: date => (new UTCDate(date)).toISOString(),
     toDate: parseISO,
     formatMatcher: date => isISO8601DateTimeString(date),
   },
@@ -73,7 +89,7 @@ const formats: DateFormat[] = [
   {
     name: 'Timestamp',
     fromDate: date => String(getTime(date)),
-    toDate: ms => parseJSON(+ms),
+    toDate: ms => fromTimestamp(ms),
     formatMatcher: date => isTimestamp(date),
   },
   {
@@ -93,6 +109,24 @@ const formats: DateFormat[] = [
     fromDate: date => dateToExcelFormat(date),
     toDate: excelFormatToDate,
     formatMatcher: isExcelFormat,
+  },
+  {
+    name: 'JS Date',
+    fromDate: date => toJSDate(date),
+    toDate: date => fromJSDate(date),
+    formatMatcher: isJSDate,
+  },
+  {
+    name: 'LDAP YMD Timestamp',
+    fromDate: date => dateToLDAPTimestamp(date),
+    toDate: date => lDAPTimestampToDate(date),
+    formatMatcher: isLDAPTimestamp,
+  },
+  {
+    name: 'Win32 FileTime/LDAP 18 digits Timestamp',
+    fromDate: date => dateToWin32FileTime(date),
+    toDate: date => win32FileTimeToUnix(date),
+    formatMatcher: isWin32FileTime,
   },
 ];
 
